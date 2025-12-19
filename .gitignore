@@ -1,1 +1,12 @@
+# Maven target folder
+/target/
+
+# Java class files
 *.class
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+·

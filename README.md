@@ -5,7 +5,7 @@ The project is developed step by step, strictly following the assignment instruc
 
 ---
 
-## Java Setup
+## A: Java Setup
 
 ### Linux
 
@@ -131,5 +131,133 @@ automation-testing/        ← Git repository
          └── HelloWorld.java
 ```
 
+``
+
+
+## B: Selenium Automation Project
+
+This project demonstrates setting up a Java environment for Selenium WebDriver, writing basic Selenium scripts, and running them using Maven. It follows the standard Maven directory structure.
+
+## Prerequisites
+
+- Java JDK (version 25 used here, assignment suggests 17)
+- Maven
+- Google Chrome Browser
+- ChromeDriver
+
+---
+
+## Linux Setup
+
+1. **Install Java (OpenJDK)**
+
+```bash
+sudo pacman -S jdk-openjdk
+java -version
+javac -version
+````
+
+* Ensure JAVA_HOME is set:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
+export PATH=$PATH:$JAVA_HOME/bin
 ```
+
+2. **Install Maven**
+
+```bash
+sudo pacman -S maven
+mvn -version
+```
+
+3. **Install Google Chrome and ChromeDriver**
+
+```bash
+sudo pacman -S chromium chromedriver
+```
+
+* Add ChromeDriver to PATH if necessary:
+
+```bash
+export PATH=$PATH:/usr/bin
+```
+
+4. **Project Structure**
+
+```
+SeleniumAutomation/
+├── pom.xml
+└── src/
+    └── main/
+        └── java/
+            └── com/
+                └── automation/
+                    └── BasicAutomation.java
+```
+
+5. **Compile and Run Basic Automation Script**
+
+From the project root (where `pom.xml` is):
+
+```bash
+mvn compile exec:java -Dexec.mainClass="com.automation.BasicAutomation"
+```
+
+* Expected behavior: Chrome opens Wikipedia, prints page title in terminal, then closes automatically.
+
+---
+
+## Windows Setup
+
+1. **Install Java JDK 17 (or 25)**
+
+* Download from [Oracle](https://www.oracle.com/java/technologies/javase-downloads.html) or [Adoptium](https://adoptium.net/).
+* Set `JAVA_HOME` and update PATH:
+
+```powershell
+setx JAVA_HOME "C:\Program Files\Java\jdk-25"
+setx PATH "%PATH%;%JAVA_HOME%\bin"
+```
+
+* Verify installation:
+
+```powershell
+java -version
+javac -version
+```
+
+2. **Install Maven**
+
+* Download from [Maven official site](https://maven.apache.org/download.cgi).
+* Extract and set `MAVEN_HOME` and update PATH:
+
+```powershell
+setx MAVEN_HOME "C:\apache-maven-3.9.11"
+setx PATH "%PATH%;%MAVEN_HOME%\bin"
+```
+
+* Verify:
+
+```powershell
+mvn -version
+```
+
+3. **Install Chrome and ChromeDriver**
+
+* Download ChromeDriver that matches your Chrome version: [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads)
+* Add the folder containing `chromedriver.exe` to your PATH.
+
+4. **Run the Basic Automation Script**
+
+From the project root (where `pom.xml` is):
+
+```powershell
+mvn compile exec:java -Dexec.mainClass="com.automation.BasicAutomation"
+```
+
+* Browser opens, Wikipedia loads, page title prints in console, browser closes automatically.
+
+---
+
 
