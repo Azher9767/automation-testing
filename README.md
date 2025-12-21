@@ -260,4 +260,84 @@ mvn compile exec:java -Dexec.mainClass="com.automation.BasicAutomation"
 
 ---
 
+## C: TestNG Integration and Automated Tests
 
+After successfully running a single Selenium automation class using Maven, the next step in the assignment is to integrate **TestNG** and execute automated test cases.
+
+### Objective
+
+* Configure TestNG with Maven
+* Create automated Selenium test cases
+* Execute tests using `mvn test`
+
+---
+
+### TestNG Dependency Configuration
+
+TestNG is added as a test dependency in `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.7.1</version>
+    <scope>test</scope>
+</dependency>
+```
+
+The Maven Surefire plugin is configured to run TestNG using `testng.xml`.
+
+---
+
+### TestNG Configuration File
+
+A `testng.xml` file is created at the project root:
+
+```
+SeleniumAutomation/testng.xml
+```
+
+This file controls which test classes are executed during the test phase.
+
+---
+
+### Test Classes Structure
+
+TestNG test classes are placed under the standard Maven test directory:
+
+```
+src/test/java/com/automation/
+```
+
+Current test classes:
+
+* `BasicAutomationTest.java`
+  → Verifies that TestNG setup is working correctly
+
+* `WikipediaSearchTest.java`
+  → Automates a search operation on Wikipedia and validates the page title
+
+---
+
+### Running TestNG Tests
+
+From the project root (`SeleniumAutomation`):
+
+```bash
+mvn test
+```
+
+Expected behavior:
+
+* TestNG test suite executes successfully
+* Browser launches for Selenium tests
+* Test results are displayed in the console
+* Build completes with **BUILD SUCCESS**
+
+---
+
+### Notes
+
+* The `target/` directory is generated automatically by Maven during test execution
+* `target/` is excluded using `.gitignore` and should not be committed
+* ChromeDriver version warnings may appear if browser versions differ, but tests still execute successfully
