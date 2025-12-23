@@ -7,6 +7,7 @@
             <class name="com.automation.BasicAutomationTest"/>
 
             <!-- Real Selenium Test -->
+            <class name="com.automation.OldWikipediaSearchTest"/>
             <class name="com.automation.WikipediaSearchTest"/>
         </classes>
     </test>

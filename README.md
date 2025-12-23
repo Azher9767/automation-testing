@@ -341,3 +341,31 @@ Expected behavior:
 * The `target/` directory is generated automatically by Maven during test execution
 * `target/` is excluded using `.gitignore` and should not be committed
 * ChromeDriver version warnings may appear if browser versions differ, but tests still execute successfully
+
+
+### Data-Driven Testing with TestNG
+
+This project includes a data-driven Selenium test using TestNG's `@DataProvider`.
+
+Test data is stored in an Excel file:
+
+```
+src/test/resources/TestData.xlsx
+
+```
+
+Each row in the Excel sheet is read using Apache POI and executed as a separate test case.
+
+### Run Tests
+
+From the `SeleniumAutomation` directory:
+
+```bash
+mvn test
+````
+
+Expected result:
+
+* Browser opens for each search term
+* Wikipedia search is performed
+* Tests pass for all rows in the Excel file
