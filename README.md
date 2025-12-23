@@ -260,6 +260,64 @@ mvn compile exec:java -Dexec.mainClass="com.automation.BasicAutomation"
 
 ---
 
+# AdvancedAutomation Selenium Script
+
+## Overview
+
+The `AdvancedAutomation.java` class demonstrates advanced Selenium WebDriver functionalities. It covers multiple browser automation scenarios, including dropdown selection, checkboxes, alerts, multiple windows, and explicit waits.
+
+---
+
+## Features Covered
+
+1. **Dropdown Selection**
+
+   * Website: [Dropdown Page](https://the-internet.herokuapp.com/dropdown)
+   * Action: Selected "Option 2" using the `Select` class.
+
+2. **Checkbox Handling**
+
+   * Website: [Checkbox Page](https://the-internet.herokuapp.com/checkboxes)
+   * Action: Selected the first checkbox if it was not already selected.
+
+3. **Alert Handling**
+
+   * Website: [JavaScript Alerts](https://the-internet.herokuapp.com/javascript_alerts)
+   * Action: Clicked the alert button and accepted the alert.
+   * Output: Printed the alert text to the console.
+
+4. **Multiple Windows / Tabs**
+
+   * Website: [Multiple Windows](https://the-internet.herokuapp.com/windows)
+   * Action: Opened a new window/tab, switched focus, printed its title, and closed it.
+
+5. **Explicit Wait**
+
+   * Website: [Dynamic Loading](https://the-internet.herokuapp.com/dynamic_loading/1)
+   * Action: Clicked the Start button and waited for the dynamically loaded text to appear, then printed it.
+
+---
+
+## Implementation Details
+
+* **Implicit Wait:** Set for general element loading.
+* **Explicit Wait:** Used for specific elements like alerts and dynamically loaded content.
+* **Thread.sleep:** Added for demonstration purposes to pause between actions.
+* **Driver Management:** Browser closes automatically at the end of the script.
+
+---
+
+## Console Output Example
+
+```
+Dropdown selected
+Checkbox selected
+Alert text: I am a JS Alert
+New window title: New Window
+Explicit wait text: Hello World!
+AdvancedAutomation completed successfully
+```
+
 ## C: TestNG Integration and Automated Tests
 
 After successfully running a single Selenium automation class using Maven, the next step in the assignment is to integrate **TestNG** and execute automated test cases.
@@ -342,6 +400,63 @@ Expected behavior:
 * `target/` is excluded using `.gitignore` and should not be committed
 * ChromeDriver version warnings may appear if browser versions differ, but tests still execute successfully
 
+# AdvancedAutomationTest Selenium Test
+
+## Overview
+
+The `AdvancedAutomationTest.java` class is a **TestNG-integrated Selenium WebDriver test** that automates multiple advanced browser interactions. Unlike the earlier standalone `main()` version, this class uses TestNG annotations for structured test execution and reporting.
+
+---
+
+## Features Covered
+
+1. **Dropdown Selection**
+
+   * Website: [Dropdown Page](https://the-internet.herokuapp.com/dropdown)
+   * Action: Selects "Option 2" from the dropdown menu using the `Select` class.
+
+2. **Checkbox Handling**
+
+   * Website: [Checkbox Page](https://the-internet.herokuapp.com/checkboxes)
+   * Action: Checks the first checkbox if it is not already selected.
+
+3. **Alert Handling**
+
+   * Website: [JavaScript Alerts](https://the-internet.herokuapp.com/javascript_alerts)
+   * Action: Clicks the alert button, waits for the alert to appear, prints its text, and accepts it.
+
+4. **Multiple Windows / Tabs**
+
+   * Website: [Multiple Windows](https://the-internet.herokuapp.com/windows)
+   * Action: Opens a new window, switches to it, prints its title, closes it, and switches back to the main window.
+
+5. **Explicit Wait (Dynamic Loading)**
+
+   * Website: [Dynamic Loading](https://the-internet.herokuapp.com/dynamic_loading/1)
+   * Action: Clicks the Start button and waits explicitly for the dynamically loaded text to appear, then prints it.
+
+---
+
+## TestNG Integration
+
+* **@BeforeMethod** – Initializes the Chrome browser, maximizes the window, and sets implicit and explicit waits.
+* **@Test** – Runs all automation steps in sequence.
+* **@AfterMethod** – Closes the browser after the test completes.
+
+> This setup ensures each test starts with a fresh browser instance and ends cleanly.
+
+---
+
+## Console Output Example
+
+```
+Dropdown selected
+Checkbox selected
+Alert text: I am a JS Alert
+New window title: New Window
+Explicit wait text: Hello World!
+AdvancedAutomation TestNG completed successfully
+```
 
 ### Data-Driven Testing with TestNG
 
