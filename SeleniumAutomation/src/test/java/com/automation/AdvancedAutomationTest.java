@@ -44,7 +44,20 @@ public class AdvancedAutomationTest {
         System.out.println("Checkbox selected");
 
         // ==================================================
-        // 3️⃣ ALERT HANDLING
+        // 3️⃣ RADIO BUTTON
+        // ==================================================
+        // driver.get("https://demoqa.com/radio-button");
+
+        // WebElement yesRadio =
+        //         driver.findElement(By.cssSelector("label[for='yesRadio']"));
+
+        // wait.until(ExpectedConditions.elementToBeClickable(yesRadio));
+        // yesRadio.click();
+
+        // System.out.println("Radio button selected: Yes");
+
+        // ==================================================
+        // 4️⃣ ALERT HANDLING
         // ==================================================
         driver.get("https://the-internet.herokuapp.com/javascript_alerts");
         WebElement alertButton = driver.findElement(By.xpath("//button[text()='Click for JS Alert']"));
@@ -54,7 +67,7 @@ public class AdvancedAutomationTest {
         alert.accept();
 
         // ==================================================
-        // 4️⃣ MULTIPLE WINDOWS / TABS
+        // 5️⃣ MULTIPLE WINDOWS / TABS
         // ==================================================
         driver.get("https://the-internet.herokuapp.com/windows");
         String parentWindow = driver.getWindowHandle();
@@ -70,7 +83,7 @@ public class AdvancedAutomationTest {
         driver.switchTo().window(parentWindow);
 
         // ==================================================
-        // 5️⃣ EXPLICIT WAIT (DYNAMIC LOADING)
+        // 6️⃣ EXPLICIT WAIT (DYNAMIC LOADING)
         // ==================================================
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
         driver.findElement(By.cssSelector("#start button")).click();

@@ -46,11 +46,23 @@ public class AdvancedAutomation {
         if (!checkbox.isSelected()) {
             checkbox.click();
         }
-
         System.out.println("Checkbox selected");
 
         // ==================================================
-        // 3️⃣ ALERT HANDLING
+        // 3️⃣ RADIO BUTTON
+        // ==================================================
+        driver.get("https://demoqa.com/radio-button");
+
+        WebElement yesRadio =
+                driver.findElement(By.cssSelector("label[for='yesRadio']"));
+
+        wait.until(ExpectedConditions.elementToBeClickable(yesRadio));
+        yesRadio.click();
+
+        System.out.println("Radio button selected: Yes");
+
+        // ==================================================
+        //  4️⃣ ALERT HANDLING
         // ==================================================
         driver.get("https://the-internet.herokuapp.com/javascript_alerts");
 
@@ -67,7 +79,7 @@ public class AdvancedAutomation {
         alert.accept();
 
         // ==================================================
-        // 4️⃣ MULTIPLE WINDOWS / TABS
+        // 5️⃣ MULTIPLE WINDOWS / TABS
         // ==================================================
         driver.get("https://the-internet.herokuapp.com/windows");
 
@@ -91,7 +103,7 @@ public class AdvancedAutomation {
         driver.switchTo().window(parentWindow);
 
         // ==================================================
-        // 5️⃣ EXPLICIT WAIT (DYNAMIC LOADING)
+        // 6️⃣ EXPLICIT WAIT (DYNAMIC LOADING)
         // ==================================================
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
 

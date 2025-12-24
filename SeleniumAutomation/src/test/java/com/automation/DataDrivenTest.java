@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
-public class WikipediaSearchTest {
+public class DataDrivenTest {
 
     WebDriver driver;
     WebDriverWait wait;
