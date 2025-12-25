@@ -7,15 +7,15 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 import java.util.Set;
+import com.automation.utils.ChromeDriverUtil;
 
 public class AdvancedAutomationTest {
-
     WebDriver driver;
     WebDriverWait wait;
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        driver = ChromeDriverUtil.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
