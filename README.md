@@ -484,3 +484,178 @@ Expected result:
 * Browser opens for each search term
 * Wikipedia search is performed
 * Tests pass for all rows in the Excel file
+
+```
+
+# Jenkins Setup & Running Selenium Tests
+
+This section explains how to install Jenkins, set it up, create a job for your Selenium project, run builds, and view output. Both Linux and Windows instructions are included.
+
+---
+
+## 1. Installing Jenkins
+
+### Linux (e.g., Arch, Ubuntu)
+
+1. Install Jenkins:
+
+```bash
+sudo pacman -S jenkins
+```
+
+Or, on Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install openjdk-17-jdk maven git jenkins
+```
+
+2. Start Jenkins service:
+
+```bash
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+```
+
+### Windows
+
+1. Download Jenkins installer from [https://www.jenkins.io/download/](https://www.jenkins.io/download/).
+2. Run the installer and follow instructions.
+3. Jenkins will install as a Windows service.
+
+---
+
+## 2. Accessing Jenkins Dashboard
+
+1. Open a browser.
+2. Navigate to:
+
+```
+http://localhost:8080
+```
+
+3. On first launch, Jenkins asks for **initial admin password**:
+
+* Linux: `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
+* Windows: Find `initialAdminPassword` in Jenkins installation folder (`C:\Program Files (x86)\Jenkins\secrets\initialAdminPassword`)
+
+4. Copy the password and complete the setup wizard.
+5. Create your first admin user (username, password, email).
+
+---
+
+## 3. Creating a New Job
+
+1. On Jenkins Dashboard, click **New Item**.
+2. Enter a name, e.g., `Selenium-Automation`.
+3. Select **Freestyle project** and click **OK**.
+
+---
+
+## 4. Linking Git Repository
+
+1. Under **Source Code Management**, select **Git**.
+2. Enter your project URL:
+
+```
+https://github.com/user-name/automation-testing.git
+```
+
+3. If the repository is private, provide credentials (username + token or SSH key).
+
+---
+
+## 5. Configuring Build
+
+### Linux
+
+1. Scroll to **Build** section.
+2. Click **Add build step → Execute shell**.
+3. Enter:
+
+```bash
+cd SeleniumAutomation
+mvn clean test -Dheadless=true
+```
+
+### Windows
+
+1. Scroll to **Build** section.
+2. Click **Add build step → Execute Windows batch command**.
+3. Enter:
+
+```powershell
+cd SeleniumAutomation
+mvn clean test -Dheadless=true
+```
+
+**Explanation:**
+
+* `-Dheadless=true` makes Chrome run without opening a GUI. Required on servers without display.
+* Remove it if you want to see the browser opening locally.
+
+---
+
+## 6. Running the Build
+
+1. Save the job configuration.
+2. Click **Build Now** on the job page.
+3. Jenkins will:
+
+   * Clone the repository
+   * Run Maven `clean test`
+   * Execute all Selenium tests
+
+---
+
+## 7. Viewing Build Output
+
+1. Click on the build number (e.g., `#1`) in **Build History**.
+2. Click **Console Output** to see logs:
+
+   * Selenium actions
+   * Test pass/fail messages
+3. Maven test reports are available at:
+
+```
+SeleniumAutomation/target/surefire-reports/
+```
+
+* `.txt` or `.xml` files contain detailed results.
+* Passed and failed tests are listed.
+
+---
+
+## 8. Headless vs Non-Headless Mode
+
+* **Headless mode**: Chrome runs without opening a window. Mandatory for Jenkins servers (Linux) or when no GUI is available. Faster and more stable.
+* **Non-headless mode**: Chrome window opens. Useful for debugging locally to see exactly what tests do.
+
+**Sample ChromeOptions in tests:**
+
+```java
+ChromeOptions options = new ChromeOptions();
+
+if ("true".equals(System.getProperty("headless"))) {
+    options.addArguments("--headless=new");
+}
+
+options.addArguments("--no-sandbox");
+options.addArguments("--disable-dev-shm-usage");
+options.addArguments("--disable-gpu");
+options.addArguments("--window-size=1920,1080");
+options.addArguments("--remote-allow-origins=*");
+
+WebDriver driver = new ChromeDriver(options);
+```
+
+---
+
+## 9. Notes and Tips
+
+* Ensure ChromeDriver version matches Chrome browser version.
+* Always set `--headless=new` for Jenkins server to avoid “Chrome instance exited” errors.
+* Locally, you can remove `--headless=new` to watch browser execution.
+* Jenkins automatically provides logs and console output for debugging.
+
+---
