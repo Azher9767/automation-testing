@@ -531,7 +531,7 @@ sudo systemctl enable jenkins
 2. Navigate to:
 
 ```
-http://localhost:8080
+http://localhost:8090
 ```
 
 3. On first launch, Jenkins asks for **initial admin password**:
